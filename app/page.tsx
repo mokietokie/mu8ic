@@ -1,3 +1,9 @@
-export default function home(){
-  return <main className="bg-amber-500">mu8ic</main>
+import Hero from '@/components/hero';
+
+export default function Home() {
+  return (
+    <main>
+      <Hero />
+    </main>
+  );
 }
