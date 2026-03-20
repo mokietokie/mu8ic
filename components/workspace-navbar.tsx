@@ -3,7 +3,12 @@
 import { Search } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
-export default function WorkspaceNavbar() {
+interface WorkspaceNavbarProps {
+  searchQuery?: string;
+  onSearch?: (query: string) => void;
+}
+
+export default function WorkspaceNavbar({ searchQuery = '', onSearch }: WorkspaceNavbarProps) {
   const { user, signOut } = useAuth();
 
   const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Creator';
@@ -35,6 +40,8 @@ export default function WorkspaceNavbar() {
           <input
             type="text"
             placeholder="Search your tracks..."
+            value={searchQuery}
+            onChange={(e) => onSearch?.(e.target.value)}
             className="bg-transparent text-sm text-white placeholder:text-white/25 outline-none w-full"
           />
         </div>
